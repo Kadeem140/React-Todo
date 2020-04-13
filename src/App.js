@@ -11,9 +11,8 @@ class App extends React.Component {
     super();
     this.state= {
         todos : [ ]
-    }
-
-  }
+    };
+  };
 
   addTask = (e, task) => {
       e.preventDefault();
@@ -30,31 +29,33 @@ class App extends React.Component {
       console.log("Total Tasks to do: ", this.state.todos);
 
   };
-  // For reference...
 
-  // addItem = (e, item) => {
-  //   console.log("First Groceries: ", this.state.groceries);
-  //   e.preventDefault();
+  toggleTask = itemId => {
+    console.log(itemId);
 
-  //   const newItem = {
-  //     name: item,
-  //     id: Date.now(),
-  //     purchased: false
-  //   };
+    this.setState({
+      todos: this.state.todos.map(item => {       
+        if (itemId === item.id) {
+          // if they match, update the purchased boolean on that item
+          return {
+            ...item,
+            completed: !item.completed
+          };
+          // this return generates the following obj:
+          // { id: 123, name: "..Entered value", completed: true}
+        }
 
-  //   this.setState({
-  //     groceries: [...this.state.groceries, newItem]
-  //   });
-  //   console.log("Second Groceries: ", this.state.groceries);
-  // };
+        // if they don't match, just return the item
+        return item;
+      })
+    });
+  };
 
   render() {
     return (
       <div>
-
-        <TodoForm  addTask={this.addTask} />
-        <TodoList todos={this.state.todos}/> 
-        
+        <TodoForm addTask={this.addTask} />
+        <TodoList todos={this.state.todos} toggleTask={this.toggleTask}/> 
       </div>
     );
   }

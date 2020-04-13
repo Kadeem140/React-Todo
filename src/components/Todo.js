@@ -3,10 +3,10 @@ import React from 'react'
 
 
  function Todo(props){
-     console.log('TODO Component Props: ', props)
+     console.log('TODO Component Props: ', props.task)
 
     return(
-        <div>
+        <div onClick={()=> props.toggleTask(props.task.id)}>
             <h1>{props.task.name}</h1>
         </div>
     )

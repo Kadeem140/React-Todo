@@ -6,13 +6,12 @@ import Todo from './Todo'
 
 function TodoList(props){
     console.log("TODO List Props: ", props);
-
     return(
         <div>
             {props.todos.map(task => (
-                <Todo key={task.id} task={task} />
+                <Todo key={task.id} task={task} toggleTask={props.toggleTask}/>
             ))}
-            <p>TODOList COMP</p>
+            
         </div>
     )
 };
