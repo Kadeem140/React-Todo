@@ -9,7 +9,13 @@ function TodoList(props){
     return(
         <div>
             {props.todos.map(task => (
-                <Todo key={task.id} task={task} toggleTask={props.toggleTask}/>
+                <Todo
+                 key={task.id} 
+                 task={task} 
+                 toggleTask={props.toggleTask} 
+                 clearCompletedTask={props.clearCompletedTask}
+                    
+                 />
             ))}
             
         </div>
