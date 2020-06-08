@@ -5,18 +5,20 @@ import Todo from './Todo'
 // feel free to change this component.js into TodoList.js
 
 function TodoList(props){
-    console.log("TODO List Props: ", props);
     return(
         <div>
             {props.todos.map(task => (
                 <Todo
                  key={task.id} 
                  task={task} 
-                 toggleTask={props.toggleTask} 
-                 clearCompletedTask={props.clearCompletedTask}
-                    
+                 toggleTask={props.toggleTask}                     
                  />
             ))}
+
+            <button onClick={props.clearCompletedTask}> 
+                Clear Completed
+             </button>
+
             
         </div>
     )

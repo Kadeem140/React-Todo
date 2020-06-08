@@ -2,6 +2,8 @@ import React from 'react';
 import Todo from './components/Todo';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import './components/Todo.css'
+
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -10,11 +12,11 @@ class App extends React.Component {
   constructor(){
     super();
     this.state= {
-        todos : [ ]
+        todos : []
     };
   };
 
-  addTask = (e, task) => {
+  addTask = (e, task) =>  { //addTask takes event and task.
       e.preventDefault();
 
       const newTask = {
@@ -31,24 +33,24 @@ class App extends React.Component {
   };
 
   toggleTask = itemId => {
-    console.log(itemId);
+    console.log('Item ID', itemId);
 
     this.setState({
       todos: this.state.todos.map(item => {       
-        if (itemId === item.id) {
+        if (item.id === itemId) {
           // if they match, update the purchased boolean on that item
           return {
             ...item,
             completed: !item.completed
-          };
+          }
           // this return generates the following obj:
           // { id: 123, name: "..Entered value", completed: true}
-        }
-
+        } else return item
         // if they don't match, just return the item
-        return item;
       })
-    });
+    })
+    console.log('After Toggle Task',itemId)
+
   };
 
   clearCompletedTask = e => {
@@ -62,7 +64,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <TodoForm addTask={this.addTask} />
+        <TodoForm 
+            addTask={this.addTask}
+             />
         <TodoList
          todos={this.state.todos}
          toggleTask={this.toggleTask}

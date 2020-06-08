@@ -20,7 +20,8 @@ import React from 'react'
         this.props.addTask(event, this.state.task)
       }
       render(){
-          console.log("TodoForm Props: ", this.props)
+        //   console.log("TodoForm Props: ", this.props)
+
         return(
             <form onSubmit={this.handleSubmit}>
                 <input 
@@ -33,7 +34,7 @@ import React from 'react'
                  />
                 <button> Add Todo </button>
 
-                {/* <button> Clear Completed </button> */}
+                <button onClick={this.props.clearCompletedTask}> Clear Completed </button>
             
             </form>
     )}
